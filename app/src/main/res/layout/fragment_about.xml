@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator"
+	android:background="?colorSurfaceContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:paddingHorizontal="8dp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior"
+        android:background="@null"
+        android:fitsSystemWindows="true"
+        app:liftOnScrollColor="?colorSurfaceContainer"
+        android:id="@+id/appbar">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_height="200dp"
+            android:layout_width="match_parent"
+            android:id="@+id/collapsingtoolbar"
+            android:gravity="center"
+            android:background="@null"
+            app:layout_collapseMode="pin"
+            app:contentScrim="?colorSurfaceContainer"
+            app:expandedTitleTextColor="@android:color/transparent"
+            app:expandedTitleSpacing="0dp"
+            app:collapsedTitleTextAppearance="@style/CollapsedAppBarTextStyle"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_gravity="bottom|center_horizontal"
+                tools:ignore="UseCompoundDrawables">
+                <ImageView
+                    android:id="@+id/app_logo"
+                    android:layout_width="86dp"
+                    android:layout_height="86dp"
+                    android:contentDescription="@string/app_logo_text"
+                    android:transitionName="shared_app_icon"
+                    android:src="@drawable/service_icon"
+                    app:tint="?colorPrimary" />
+                <TextView
+                    android:id="@+id/random_note"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textColor="?colorOnSurfaceVariant"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:text="@string/about_tagline" />
+            </LinearLayout>
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:layout_height="?attr/actionBarSize"
+                android:layout_width="match_parent"
+                app:title=""
+                android:background="@null"
+                app:liftOnScroll="false"
+                app:navigationIcon="@drawable/ic_arrow_back"
+                android:theme="@style/ThemeOverlay.Material3.Toolbar.CircleNavigationButton"
+                app:layout_collapseMode="pin"
+                android:id="@+id/toolbar">
+
+                <TextView
+                    android:id="@+id/toolbar_text"
+                    android:textSize="24.0sp"
+                    android:textColor="?colorOnSurface"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="8.0dp"
+                    android:text="@string/about_title"
+                    android:layout_marginHorizontal="10.0dp" />
+
+            </com.google.android.material.appbar.MaterialToolbar>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.xapps.media.xmusic.widget.SpringOverScrollRelativeLayout
+        android:id="@+id/spring_scroll_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+			android:overScrollMode="never"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <LinearLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:paddingTop="16dp"
+                android:paddingHorizontal="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:textSize="14.0sp"
+                    android:textColor="?colorPrimary"
+                    android:id="@+id/first_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="8.0dp"
+                    android:textStyle="bold"
+                    android:text="@string/about_app_info"
+                    android:layout_marginHorizontal="16.0dp" />
+
+                <LinearLayout
+                    android:id="@+id/first_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/rv_ripple_top_inverse"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:textSize="16.0sp"
+                        android:textColor="?colorOnSurface"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/about_package_name" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_pkg_name"
+                        android:textColor="?colorOutline"
+                        android:textSize="14.0sp"
+                        tools:ignore="TextContrastCheck" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/second_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/rv_ripple_inverse"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:textSize="16.0sp"
+                        android:textColor="?colorOnSurface"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/about_version" />
+                    <TextView
+                        android:id="@+id/version_text"
+                        android:textSize="14.0sp"
+                        android:textColor="?colorOutline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/third_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/rv_ripple_inverse"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:textSize="16.0sp"
+                        android:textColor="?colorOnSurface"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/about_build_type" />
+                    <TextView
+                        android:id="@+id/build_text"
+                        android:textSize="14.0sp"
+                        android:textColor="?colorOutline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/fourth_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/rv_ripple_bottom_inverse"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:textSize="16.0sp"
+                        android:textColor="?colorOnSurface"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/about_licenses" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/about_licenses_desc"
+                        android:textColor="?colorOutline"
+                        android:textSize="14.0sp"
+                        tools:ignore="TextContrastCheck" />
+                </LinearLayout>
+
+            </LinearLayout>
+            
+        </androidx.core.widget.NestedScrollView>
+        
+    </com.xapps.media.xmusic.widget.SpringOverScrollRelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

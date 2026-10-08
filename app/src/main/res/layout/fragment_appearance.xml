@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinator"
+	android:background="?colorSurfaceContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+	    android:id="@+id/appbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="@null"
+		android:fitsSystemWindows="true"
+		app:liftOnScrollColor="@null">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_height="?attr/collapsingToolbarLayoutLargeSize"
+            android:layout_width="match_parent"
+            android:id="@+id/collapsingtoolbar"
+            app:contentScrim="?colorSurfaceContainer"
+			android:paddingHorizontal="8dp"
+            android:layout_marginHorizontal="8dp"
+            app:expandedTitleTextAppearance="@style/ExpandedAppBarTextStyle"
+            app:expandedTitleSpacing="0dp"
+            app:collapsedTitleTextAppearance="@style/CollapsedAppBarTextStyle"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:layout_height="?attr/actionBarSize"
+                android:layout_width="match_parent"
+                app:title="Appearance"
+                app:navigationIcon="@drawable/ic_arrow_back"
+                android:theme="@style/ThemeOverlay.Material3.Toolbar.CircleNavigationButton"
+                app:layout_collapseMode="pin"
+                android:id="@+id/toolbar" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.xapps.media.xmusic.widget.SpringOverScrollRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+			android:overScrollMode="never"
+            android:paddingTop="4dp">
+            
+            <LinearLayout
+                android:id="@+id/main_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="?colorPrimary"
+                    android:text="@string/appearance_title" />
+
+                <LinearLayout
+                    android:id="@+id/top_pref"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:padding="16dp"
+                    android:background="@drawable/rv_ripple_top_inverse"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/top_content"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/appearance_theme"
+                            android:textSize="16sp"
+                            android:layout_marginBottom="2dp"
+                            android:textColor="?colorOnSurface" />
+
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButtonToggleGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginTop="12dp"
+                        app:selectionRequired="true"
+                        app:singleSelection="true">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/system_theme"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="12dp"
+                            android:paddingHorizontal="4dp"
+                            app:iconPadding="8dp"
+                            android:textSize="16dp"
+                            android:text="@string/appearance_theme_system"
+                            android:layout_width="wrap_content"
+                            style="@style/Widget.Material3Expressive.Button.TonalButton"
+                            app:icon="@drawable/ic_theme_light_dark"
+                        />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/dark_theme"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="12dp"
+                            app:iconPadding="8dp"
+                            android:textSize="16dp"
+                            android:text="@string/appearance_theme_dark"
+                            android:layout_width="wrap_content"
+                            style="@style/Widget.Material3Expressive.Button.TonalButton"
+                            app:icon="@drawable/ic_dark_mode"
+                        />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/light_theme"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:paddingVertical="12dp"
+                            app:iconPadding="8dp"
+                            android:textSize="16dp"
+                            android:text="@string/appearance_theme_light"
+                            style="@style/Widget.Material3Expressive.Button.TonalButton"
+                            app:icon="@drawable/ic_light_mode"
+                        />
+
+                    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/first_pref"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="2dp"
+                    android:padding="16dp"
+                    android:background="@drawable/rv_ripple_inverse"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/first_content"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/appearance_dynamic_theme"
+                            android:textSize="16sp"
+                            android:layout_marginBottom="2dp"
+                            android:textColor="?colorOnSurface" />
+
+                        <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/appearance_dynamic_theme_desc"
+                            android:textSize="14sp"
+                            android:textColor="?colorOutline" />
+
+                    </LinearLayout>
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/first_switch"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        style="@style/CustomSwitch"
+                    />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/olde_pref"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="2dp"
+                    android:padding="16dp"
+                    android:background="@drawable/rv_ripple_inverse"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/oled_content"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/appearance_black_theme"
+                            android:textSize="16sp"
+                            android:layout_marginBottom="2dp"
+                            android:textColor="?colorOnSurface" />
+
+                        <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/appearance_black_theme_desc"
+                            android:textSize="14sp"
+                            android:textColor="?colorOutline" />
+
+                    </LinearLayout>
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/oled_switch"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        style="@style/CustomSwitch"
+                    />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/second_pref"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="2dp"
+                    android:padding="0dp"
+                    android:background="@drawable/rv_ripple_bottom_inverse"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:padding="16dp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/second_content"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="wrap_content"
+                                    android:text="@string/appearance_custom_color"
+                                    android:textSize="16sp"
+                                    android:layout_marginBottom="2dp"
+                                    android:textColor="?colorOnSurface" />
+
+                                <ImageView
+                                    android:id="@+id/icon1"
+                                    android:layout_height="16dp"
+                                    android:layout_width="16dp"
+                                    android:src="@drawable/ic_test_tube"
+                                    android:tint="?attr/colorError"
+                                />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:text="@string/appearance_custom_color_desc"
+                                android:textSize="14sp"
+                                android:textColor="?colorOutline" />
+
+                        </LinearLayout>
+
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/second_switch"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            style="@style/CustomSwitch"
+                        />
+
+                    </LinearLayout>
+
+                    <com.rtugeek.android.colorseekbar.ColorSeekBar
+                        android:id="@+id/colorSeekBar"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="8dp"
+                        app:colorSeekBarColorSeeds="@array/material_colors"
+                        app:colorSeekBarBarHeight="24dp"
+                        android:layout_height="wrap_content" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/apply_button"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_margin="16dp"
+                        android:text="@string/apply" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="?colorPrimary"
+                    android:text="@string/appearance_icon" />
+
+                <LinearLayout
+                    android:id="@+id/icon_pref"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="2dp"
+                    android:padding="16dp"
+                    android:background="@drawable/rv_ripple_single_inverse"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/icon_content"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/appearance_icon_redesigned"
+                            android:textSize="16sp"
+                            android:layout_marginBottom="2dp"
+                            android:textColor="?colorOnSurface" />
+
+                        <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/appearance_icon_redesigned_desc"
+                            android:textSize="14sp"
+                            android:textColor="?colorOutline" />
+
+                    </LinearLayout>
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/icon_switch"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        style="@style/CustomSwitch"
+                    />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="?colorPrimary"
+                    android:text="@string/appearance_interface" />
+
+                <LinearLayout
+                    android:id="@+id/blur_pref"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="2dp"
+                    android:padding="16dp"
+                    android:background="@drawable/rv_ripple_single_inverse"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/blur_content"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/appearance_blur"
+                            android:textSize="16sp"
+                            android:layout_marginBottom="2dp"
+                            android:textColor="?colorOnSurface" />
+
+                        <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/appearance_blur_desc"
+                            android:textSize="14sp"
+                            android:textColor="?colorOutline" />
+
+                    </LinearLayout>
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/blur_switch"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        style="@style/CustomSwitch"
+                    />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </com.xapps.media.xmusic.widget.SpringOverScrollRelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

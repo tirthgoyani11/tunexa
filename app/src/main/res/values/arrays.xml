@@ -1,0 +1,23 @@
+<resources>
+    <string-array name="material_colors">
+        <item>@color/grad_1</item>
+        <item>@color/grad_2</item>
+        <item>@color/grad_3</item>
+        <item>@color/grad_4</item>
+        <item>@color/grad_5</item>
+        <item>@color/grad_6</item>
+        <item>@color/grad_7</item>
+        <item>@color/grad_8</item>
+    </string-array>
+    <string-array name="toggle_shapes">
+        <item>Square</item>
+        <item>Soft Burst</item>
+        <item>Cookie 9</item>
+        <item>Pentagon</item>
+        <item>Pill</item>
+        <item>Sunny</item>
+        <item>Cookie 4</item>
+        <item>Circle</item>
+        <item>Cookie 12</item>
+    </string-array>
+</resources>

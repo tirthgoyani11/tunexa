@@ -1,0 +1,16 @@
+build/
+/build
+app/build/
+.gradle/
+.idea/
+.vscode/
+.androidide/
+/.androidide
+.env
+*log
+*.log
+local.properties
+google-services.json
+.kilo/
+.acside/
+.artifacts/

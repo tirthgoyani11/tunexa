@@ -1,0 +1,163 @@
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.aboutlibraries)
+}
+
+def localProps = new Properties()
+def localPropsFile = rootProject.file("local.properties")
+if (localPropsFile.exists()) {
+    localProps.load(new FileInputStream(localPropsFile))
+}
+
+def getSecret = { key ->
+    if (localProps.getProperty(key) != null) return localProps.getProperty(key)
+    else if (System.getenv(key) != null) return System.getenv(key)
+    else throw new GradleException("$key is missing.")
+}
+
+android {
+    namespace = "com.xapps.media.xmusic"
+    compileSdk = 37
+
+    defaultConfig {
+        applicationId = "com.xapps.media.xmusic"
+        minSdk = 26
+        targetSdk = 37
+        versionCode = 40
+        versionName = '0.40 Alpha'
+    }
+
+    buildFeatures {
+        viewBinding = true
+        buildConfig = true
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile("src/main/AndroidManifest.xml")
+            java.srcDirs += "src/extra/java"
+        }
+    }
+
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    signingConfigs {
+        release {
+            if (localProps.getProperty("KEYSTORE_BASE64") != null || System.getenv("KEYSTORE_BASE64") != null) {
+                def base64Key = getSecret("KEYSTORE_BASE64")
+                def tmpFile = file("build/tmp_keystore.jks")
+                tmpFile.parentFile.mkdirs()
+                tmpFile.bytes = Base64.decoder.decode(base64Key)
+
+                storeFile = tmpFile
+                storePassword = getSecret("KEYSTORE_PASSWORD")
+                keyAlias = getSecret("KEY_ALIAS")
+                keyPassword = getSecret("ALIAS_PASSWORD")
+            } else {
+                storeFile file(System.getProperty("user.home") + "/.android/debug.keystore")
+                storePassword "android"
+                keyAlias "androiddebugkey"
+                keyPassword "android"
+            }
+        }
+
+        debug {
+            storeFile file(System.getProperty("user.home") + "/.android/debug.keystore")
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+
+        preview {
+            initWith(release)
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable = true
+            minifyEnabled = false
+            shrinkResources = false
+            signingConfig = signingConfigs.debug
+        }
+
+        preview {
+            initWith(release)
+            matchingFallbacks = ["release", "debug"]
+            debuggable = false
+            minifyEnabled = false
+            shrinkResources = false
+            signingConfig = signingConfigs.release
+        }
+
+        release {
+            debuggable = false
+            minifyEnabled = true
+            shrinkResources = true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig = signingConfigs.release
+        }
+    }
+
+    lint {
+        abortOnError = true
+        checkReleaseBuilds = false
+        explainIssues = true
+        htmlReport = true
+    }
+
+    splits {
+        abi {
+            enable = true
+            reset()
+            include("armeabi-v7a", "arm64-v8a", "x86_64")
+            universalApk = true
+        }
+    }
+}
+
+dependencies {
+    coreLibraryDesugaring(libs.desugar.nio)
+    implementation(libs.newpipe.extractor)
+    implementation(libs.taglib)
+    implementation(libs.glide)
+    implementation(libs.material)
+    implementation(libs.transition)
+    implementation(libs.fragment)
+    implementation(libs.palette)
+    implementation(libs.coordinatorlayout)
+
+    implementation(libs.media3.exoplayer)
+    implementation(libs.media3.session)
+
+    implementation(libs.core.splashscreen)
+    implementation(libs.activity)
+
+    implementation(libs.androidx.media)
+    implementation(libs.customview.poolingcontainer)
+    implementation(libs.recyclerview)
+    implementation(libs.lifecycle.process)
+
+    implementation(libs.media3.ffmpeg.decoder) {
+        exclude(group: "androidx.media3")
+    }
+
+    implementation(libs.colorseekbar)
+    implementation(libs.lottie)
+    implementation(libs.aboutlibraries.core)
+
+
+    implementation files("libs/fastscroller.aar")
+    implementation files("libs/roundedimageview.aar")
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs.addAll([
+            "-Xlint:unchecked",
+            "-Xlint:deprecation"
+    ])
+}

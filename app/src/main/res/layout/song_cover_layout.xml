@@ -1,0 +1,19 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/image_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:clipChildren="false"
+    android:elevation="2dp">
+    <com.appbroker.roundedimageview.RoundedImageView
+        android:id="@+id/miniPlayerThumbnail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleX="0.93"
+        android:scaleY="0.93"
+        android:src="@drawable/placeholder"
+        app:radius="28dp" />
+</LinearLayout>

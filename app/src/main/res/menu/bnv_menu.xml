@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menuExploreFragment"
+        android:icon="@drawable/ic_explore_compass"
+        android:title="Explore" />
+    
+    <item
+        android:id="@+id/menuHomeFragment"
+        android:icon="@drawable/icon_library_music_round"
+        android:title="Library" />
+
+    <item
+        android:id="@+id/menuEffectsFragment"
+        android:icon="@drawable/ic_equalizer_bars"
+        android:title="Effects" />
+
+    <item
+        android:id="@+id/menuSettingsFragment"
+        android:icon="@drawable/settings_animation"
+        android:title="Settings" />
+
+    <item
+        android:id="@+id/menuSearchFragment"
+        android:visible="false"
+        android:title="Search" />
+</menu>

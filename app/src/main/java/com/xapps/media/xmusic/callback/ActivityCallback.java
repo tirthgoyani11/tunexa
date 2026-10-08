@@ -1,0 +1,36 @@
+package com.xapps.media.xmusic.callback;
+
+public interface ActivityCallback {
+
+    default void onSongChanged(int position) {
+        
+    }
+
+    default void onProgressChanged(long progress) {
+        
+    }
+
+    default void onColorsChanged() {
+        
+    }
+
+    default void onPlaybackStateChanged(boolean playing) {
+        
+    }
+
+    default void updateState() {
+        
+    }
+
+    default void passData() {
+        
+    }
+
+    default void onNotificationButtonsUsed(int i) {
+
+    }
+
+    default void onNotificationButtonsUsed(boolean b) {
+
+    }
+}
