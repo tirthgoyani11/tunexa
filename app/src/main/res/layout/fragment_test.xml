@@ -29,7 +29,7 @@
             <com.google.android.material.appbar.MaterialToolbar
                 android:layout_height="?attr/actionBarSize"
                 android:layout_width="match_parent"
-                app:title="XMusic"
+                app:title="Tunexa"
                 app:navigationIcon="@null"
                 android:theme="@style/ThemeOverlay.Material3.Toolbar.CircleNavigationButton"
                 app:layout_collapseMode="pin"
